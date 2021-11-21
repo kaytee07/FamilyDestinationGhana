@@ -868,6 +868,11 @@
   color: #FF6201;
 }
 
+.describtion__modal .describtion__modal__card__headers-other-details .button a{
+  text-decoration: none;
+  color: white;
+}
+
 .describtion__modal .describtion__modal__card__headers-other-details p {
   margin-bottom: 10px;
   font-family: sans-serif;

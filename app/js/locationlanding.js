@@ -119,8 +119,8 @@ const LocationLanding = (()=>{
                           )}
                         </p>
                         <button name="${Product.map((locations) =>
-                          elem.parentElement.firstElementChild.innerHTML ==
-                          locations.name
+                          elem.firstElementChild.nextElementSibling
+                            .firstElementChild.innerHTML == locations.name
                             ? (loc = locations.location)
                             : ""
                         )}" class="button"><a href="${loc}" target="_blank">Get Location</a></button>
