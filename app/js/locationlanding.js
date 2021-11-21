@@ -36,15 +36,21 @@ const LocationLanding = (()=>{
 
      
 
-     $card.forEach((elem)=>{
-        elem.childNodes[1].addEventListener("click",(e)=>{
-            if(e.target.classList.value === "card-btn btn"){
-                 $describtionModal.classList.add("show");
-                 $body.classList.add("hidden");
-                 $overlay.classList.add("show");
-                 showModal(e.target)
-            }
-        })   
+     $card.forEach((elem)=>{;
+       [...elem.children].forEach((node) =>
+         node.addEventListener("click", (e) => {
+           if (
+             e.target.parentElement.parentElement.classList.value ===
+             "product__page__product__cards card"
+           ) {
+             $describtionModal.classList.add("show");
+             $body.classList.add("hidden");
+             $overlay.classList.add("show");
+             showModal(e.target.parentElement.parentElement);
+           }
+         })
+       );
+       
      })
 
      
@@ -92,8 +98,7 @@ const LocationLanding = (()=>{
             <div class="describtion__modal__card__header">
                 <div class="describtion__modal__card__header-img">
                        <img src="${
-                         elem.parentElement.previousElementSibling
-                           .firstElementChild.src
+                         elem.firstElementChild.firstElementChild.src
                        }" alt="">   
                 </div>
                 <div class="describtion__modal__card__headers-other-details">
@@ -102,12 +107,13 @@ const LocationLanding = (()=>{
                     </div>
                     <div class="describtion__modal__card__headers-other-details">
                        <h4 >${
-                         elem.parentElement.firstElementChild.innerHTML
+                         elem.firstElementChild.nextElementSibling
+                           .firstElementChild.innerHTML
                        }</h4>
                         <p>
                           ${Product.map((about) =>
-                            elem.parentElement.firstElementChild.innerHTML ==
-                            about.name
+                            elem.firstElementChild.nextElementSibling
+                              .firstElementChild.innerHTML == about.name
                               ? about.about
                               : ""
                           )}
@@ -134,6 +140,7 @@ const LocationLanding = (()=>{
     const render = () => {
         
          $category.forEach((elem) => {
+           console.log(elem.firstElementChild);
               let markUp = "";
               Product.forEach((item) => {
                    if(elem.firstElementChild.textContent === item.Category){
